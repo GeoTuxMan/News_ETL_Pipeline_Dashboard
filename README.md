@@ -1,7 +1,9 @@
 # News_ETL_Pipeline_Dashboard
 News ETL Pipeline & Dashboard is a Python project that extracts news articles from BBC RSS feeds, processes and analyzes their content, and visualizes the data in an interactive web dashboard using Flask and Chart.js. 
 
-Online demo (develop with AWS, EC2): in [Demo](#http://13.51.172.144:5000/)
+[Live News ETL Dashboard](http://13.51.172.144:5000)
+
+Note: This is hosted on an AWS EC2 instance using Flask development server. For production, it is recommended to use a WSGI server (Gunicorn) with Nginx.
 
 Features:
 
