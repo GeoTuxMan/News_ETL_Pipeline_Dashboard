@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>News Dashboard</h1>
+    <p>Total articles: {{ total_articles }}</p>
+    <p>Average sentiment: {{ "%.2f"|format(avg_sentiment) }}</p>
+
+    <h2>Sentiment Distribution</h2>
+    <canvas id="sentimentChart" width="400" height="200"></canvas>
+
+    <h2>Word Count Distribution</h2>
+    <canvas id="wordChart" width="400" height="200"></canvas>
+
+    <table>
+        <tr><th>#</th><th>Title</th><th>Sentiment</th><th>Word Count</th></tr>
+        {% for art in articles %}
+        <tr>
+            <td>{{ loop.index0 }}</td>
+            <td><a href="{{ url_for('article', article_id=loop.index0) }}">{{ art.title }}</a></td>
+            <td>{{ "%.2f"|format(art.sentiment) }}</td>
+            <td>{{ art.word_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        const sentimentData = {{ articles|map(attribute='sentiment')|list|tojson }};
+    const wordData = {{ articles|map(attribute='word_count')|list|tojson }};
+    const labels = {{ articles|map(attribute='title')|list|tojson }};
+	
+        // Sentiment Chart
+        new Chart(document.getElementById('sentimentChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Sentiment',
+                    data: sentimentData,
+                    backgroundColor: sentimentData.map(v => v >= 0 ? 'rgba(75, 192, 192, 0.6)' : 'rgba(255, 99, 132, 0.6)')
+                }]
+            },
+            options: {
+                responsive: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { ticks: { display: false } } }
+            }
+        });
+
+        // Word Count Chart
+        new Chart(document.getElementById('wordChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Word Count',
+                    data: wordData,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                }]
+            },
+            options: {
+                responsive: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { ticks: { display: false } } }
+            }
+        });
+    </script>
+</body>
+</html>
 
