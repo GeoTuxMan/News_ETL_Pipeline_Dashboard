@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ article.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>{{ article.title }}</h1>
+    <p><strong>Sentiment:</strong> {{ "%.2f"|format(article.sentiment) }}</p>
+    <p><strong>Word Count:</strong> {{ article.word_count }}</p>
+    <hr>
+    <p>{{ article.clean_content }}</p>
+    <a href="{{ url_for('index') }}">Back to dashboard</a>
+</body>
+</html>
