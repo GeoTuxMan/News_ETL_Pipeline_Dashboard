@@ -36,7 +36,9 @@ Installation: pip install -r requirements.txt
 Download NLTK resources (one-time):
 
 import nltk
+
 nltk.download("punkt")
+
 nltk.download("stopwords")
 
 Usage:
