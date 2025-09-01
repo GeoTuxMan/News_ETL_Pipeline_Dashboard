@@ -32,19 +32,27 @@ Tech Stack:
 -Web scraping: requests, BeautifulSoup4
 
 Installation: pip install -r requirements.txt
+
 Download NLTK resources (one-time):
+
 import nltk
 nltk.download("punkt")
 nltk.download("stopwords")
 
 Usage:
+
 Run ETL pipeline: python etl.py
+
 Run dashboard: cd dashboard
+
 python app.py
+
 Open browser: http://127.0.0.1:5000
 
 Screenshot:
+
 ![unu](etl.png)
+
 ![doi](flask.png)
 
 
