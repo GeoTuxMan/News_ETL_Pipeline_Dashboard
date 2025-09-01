@@ -1,8 +1,11 @@
 from flask import Flask, render_template
+import os
 import sqlite3
 import pandas as pd
 
-DB_PATH = "../news.db"  # relative to dashboard folder
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # folderul dashboard/
+DB_PATH = os.path.join(BASE_DIR, "..", "news.db")   
+
 
 app = Flask(__name__)
 
@@ -31,3 +34,4 @@ def article(article_id):
 
 if __name__ == "__main__":
     app.run(debug=True)
+
